@@ -10,8 +10,9 @@
 
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 const REVIEWS_DIR = join(DATA_DIR, 'reviews')
 
 export type ReviewDecision = 'approve' | 'fix' | 'escalate'

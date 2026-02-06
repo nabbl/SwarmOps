@@ -285,7 +285,8 @@ export async function getProjectInfoFromRun(runId: string): Promise<{
   }
 
   // Fallback: Try to get from PipelineRunner's run state
-  const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+  const { getOrchestratorDataDir } = await import('../config/environment')
+  const DATA_DIR = getOrchestratorDataDir()
   const runPath = join(DATA_DIR, 'runs', `${runId}.json`)
   
   try {

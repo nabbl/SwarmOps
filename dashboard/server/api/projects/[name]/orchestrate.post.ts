@@ -19,6 +19,7 @@ import {
 import { createEscalation } from '../../../utils/escalation-store'
 import { canSpawnTask, registerTask, filterSpawnableTasks } from '../../../utils/task-registry'
 import { requireAuth, validateProjectName } from '../../../utils/security'
+import { getOrchestratorDataDir } from '../../../config/environment'
 
 interface OrchestrateRequest {
   action: 'start' | 'continue' | 'validate' | 'fix'
@@ -50,7 +51,7 @@ interface PhaseInfo {
 const activeProjectRuns = new Map<string, ActiveRun>()
 
 // Persistence directory for run state
-const RUNS_DIR = '/home/siim/swarmops/data/orchestrator/project-runs'
+const RUNS_DIR = join(getOrchestratorDataDir(), 'project-runs')
 
 // Pending retries map (runId:taskId → timeout)
 const pendingRetries = new Map<string, ReturnType<typeof setTimeout>>()
@@ -127,7 +128,7 @@ function isWebDesignTask(task: GraphTask, projectName: string): boolean {
 async function loadWebDesignSkill(): Promise<string | null> {
   try {
     const { readFile } = await import('fs/promises')
-    const skillPath = '/home/siim/swarmops/data/orchestrator/skills/web-visuals/SKILL.md'
+    const skillPath = join(getOrchestratorDataDir(), 'skills', 'web-visuals', 'SKILL.md')
     const content = await readFile(skillPath, 'utf-8')
     // Remove YAML frontmatter
     const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n*/, '')
@@ -664,7 +665,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<OrchestrateRequest>(event)
   const projectPath = join(config.projectsDir, name)
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+  const dashboardPath = process.env.SWARMOPS_DASHBOARD_PATH || join(config.projectsDir, 'swarmops-dashboard', 'src')
   
   // Read progress.md and parse task graph
   const progressPath = join(projectPath, 'progress.md')

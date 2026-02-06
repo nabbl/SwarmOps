@@ -7,8 +7,9 @@
 
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join, dirname } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const QUEUE_PATH = '/home/siim/swarmops/data/orchestrator/work-queue.json'
+const QUEUE_PATH = join(getOrchestratorDataDir(), 'work-queue.json')
 
 export interface Task {
   id: string

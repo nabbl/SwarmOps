@@ -19,7 +19,9 @@ import {
 import { parseTaskGraph, getReadyTasks } from './orchestrator'
 
 const POLL_INTERVAL_MS = 30_000 // 30 seconds
-const PROJECTS_DIR = '/home/siim/swarmops/projects'
+import { getProjectsDir } from '../config/environment'
+
+const PROJECTS_DIR = getProjectsDir()
 
 let pollInterval: ReturnType<typeof setInterval> | null = null
 let isPolling = false

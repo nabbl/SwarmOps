@@ -9,6 +9,7 @@ import { wakeAgent, buildBuilderPrompt } from './agent'
 import { broadcastProjectUpdate } from '../plugins/websocket'
 import { createWorktree } from './worktree-manager'
 import { filterSpawnableTasks, registerTask, updateTaskStatus } from './task-registry'
+import { getOrchestratorDataDir, getProjectsDir } from '../config/environment'
 
 interface WorkerInfo {
   id: string
@@ -222,8 +223,8 @@ export async function triggerPhaseWork(
   // Mark as triggered
   activePhaseWork.set(key, now)
   console.log(`[triggerPhaseWork] Starting ${key}`)
-  
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+
+  const dashboardPath = process.env.SWARMOPS_DASHBOARD_PATH || join(getProjectsDir(), 'swarmops-dashboard', 'src')
   
   switch (phase) {
     case 'spec': {
@@ -355,7 +356,7 @@ export async function triggerOrchestrator(
   projectName: string
 ): Promise<{ triggered: boolean; message: string; details?: any }> {
   const progressPath = join(projectPath, 'progress.md')
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+  const dashboardPath = process.env.SWARMOPS_DASHBOARD_PATH || join(getProjectsDir(), 'swarmops-dashboard', 'src')
   
   let progressContent: string
   try {
@@ -525,7 +526,7 @@ function isWebDesignTask(task: any, projectName: string): boolean {
 async function loadWebDesignSkill(): Promise<string | null> {
   try {
     const { readFile } = await import('fs/promises')
-    const skillPath = '/home/siim/swarmops/data/orchestrator/skills/web-visuals/SKILL.md'
+    const skillPath = join(getOrchestratorDataDir(), 'skills', 'web-visuals', 'SKILL.md')
     const content = await readFile(skillPath, 'utf-8')
     // Remove YAML frontmatter
     const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n*/, '')

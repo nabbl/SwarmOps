@@ -4,8 +4,9 @@
 
 import { appendFile, mkdir } from 'fs/promises'
 import { join } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 const LEDGER_PATH = join(DATA_DIR, 'ledger.jsonl')
 
 export type LedgerEntryType =

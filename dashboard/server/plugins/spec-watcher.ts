@@ -10,7 +10,9 @@ import { readFile, stat } from 'fs/promises'
 import { join, basename, dirname } from 'path'
 import { readdirSync } from 'fs'
 
-const PROJECTS_DIR = '/home/siim/swarmops/projects'
+import { getProjectsDir } from '../config/environment'
+
+const PROJECTS_DIR = getProjectsDir()
 const DEBOUNCE_MS = 5000  // Wait 5s after file change before triggering
 
 // Track which projects we've already triggered to avoid duplicates

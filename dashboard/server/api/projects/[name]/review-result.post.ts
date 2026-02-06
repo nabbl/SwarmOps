@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<ReviewResultRequest>(event)
   const projectPath = join(config.projectsDir, name)
-  const dashboardPath = '/home/siim/swarmops/projects/swarmops-dashboard/src'
+  const dashboardPath = process.env.SWARMOPS_DASHBOARD_PATH || join(config.projectsDir, 'swarmops-dashboard', 'src')
   
   // Log review result to activity
   const activityFile = join(projectPath, 'activity.jsonl')

@@ -16,7 +16,9 @@ import { readdirSync, existsSync } from 'fs'
 import { logActivity, checkAndAdvancePhase, triggerPhaseWork } from './auto-advance'
 import { broadcastProjectUpdate } from '../plugins/websocket'
 
-const PROJECTS_DIR = '/home/siim/swarmops/projects'
+import { getProjectsDir } from '../config/environment'
+
+const PROJECTS_DIR = getProjectsDir()
 const STALL_THRESHOLD_MS = 10 * 60 * 1000  // 10 minutes
 const MAX_TASK_RETRIES = 3
 

@@ -7,8 +7,9 @@
 
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join, dirname } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const RETRY_STATE_PATH = '/home/siim/swarmops/data/orchestrator/retry-state.json'
+const RETRY_STATE_PATH = join(getOrchestratorDataDir(), 'retry-state.json')
 
 export interface RetryPolicy {
   maxAttempts: number

@@ -2,8 +2,9 @@ import { readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { PipelineRunner, type Pipeline, type Role } from '../../../../utils/pipeline-runner'
 import { requireAuth } from '../../../../utils/security'
+import { getOrchestratorDataDir } from '../../../../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 
 export default defineEventHandler(async (event) => {
   requireAuth(event)

@@ -11,8 +11,9 @@
 
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 const REGISTRY_FILE = join(DATA_DIR, 'task-registry.json')
 
 export type TaskStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled'

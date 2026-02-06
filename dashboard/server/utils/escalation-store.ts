@@ -7,8 +7,9 @@
 
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join, dirname } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const ESCALATIONS_PATH = '/home/siim/swarmops/data/orchestrator/escalations.json'
+const ESCALATIONS_PATH = join(getOrchestratorDataDir(), 'escalations.json')
 
 export type EscalationStatus = 'open' | 'resolved' | 'dismissed'
 export type EscalationSeverity = 'low' | 'medium' | 'high' | 'critical'

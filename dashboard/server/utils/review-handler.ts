@@ -18,8 +18,9 @@ import { createEscalation, type Escalation } from './escalation-store'
 import { checkoutBranch, mergeBranch, branchExists, getCurrentBranch } from './conflict-resolver'
 
 const exec = promisify(execCallback)
+import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 const FIX_CYCLES_PATH = join(DATA_DIR, 'fix-cycles.json')
 
 export interface FixCycle {

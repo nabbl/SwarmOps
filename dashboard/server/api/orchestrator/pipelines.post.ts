@@ -2,8 +2,9 @@ import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { randomUUID } from 'crypto'
 import { requireAuth } from '../../utils/security'
+import { getOrchestratorDataDir } from '../../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 
 interface PipelineStep {
   id: string

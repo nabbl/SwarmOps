@@ -4,9 +4,10 @@
 
 import { BaseStorage, NotFoundError, ConflictError, generateId, timestamp } from './base';
 import { Role, RoleCreateInput, RoleUpdateInput, DEFAULT_ROLE_VALUES, BUILTIN_ROLES } from '../types';
+import { getRolesPath } from '../config/environment';
 
 /** Default storage path for roles */
-const DEFAULT_ROLES_PATH = '/home/siim/swarmops/data/orchestrator/roles.json';
+const DEFAULT_ROLES_PATH = getRolesPath();
 
 /**
  * Storage class for Role entities

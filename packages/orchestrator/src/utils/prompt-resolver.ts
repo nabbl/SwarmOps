@@ -7,9 +7,10 @@ import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { resolve, isAbsolute } from 'path';
 import { Role } from '../types/role';
+import { getPromptsDir } from '../config/environment';
 
 /** Default base path for relative prompt files */
-const DEFAULT_PROMPTS_BASE = '/home/siim/swarmops/data/orchestrator/prompts';
+const DEFAULT_PROMPTS_BASE = getPromptsDir();
 
 /**
  * Resolve instructions for a role

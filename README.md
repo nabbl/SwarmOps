@@ -105,12 +105,16 @@ Each role includes detailed instructions. Customize in the dashboard under **Rol
 
 ### Environment Variables
 
-| Variable | Description |
-|----------|-------------|
-| `OPENCLAW_GATEWAY_URL` | Gateway API URL (default: `http://127.0.0.1:18789`) |
-| `OPENCLAW_GATEWAY_TOKEN` | Auth token for dashboard access |
-| `PROJECTS_DIR` | Path to projects directory |
-| `ORCHESTRATOR_DATA_DIR` | Path to orchestrator state |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `OPENCLAW_GATEWAY_URL` | Gateway API URL | `http://127.0.0.1:18789` |
+| `OPENCLAW_GATEWAY_TOKEN` | Auth token for dashboard access | - |
+| `SWARMOPS_DATA_DIR` | Base data directory for SwarmOps | `~/.swarmops/data` |
+| `SWARMOPS_PROJECTS_DIR` | Path to projects directory | `~/.swarmops/projects` |
+| `PROJECTS_DIR` | Legacy alias for `SWARMOPS_PROJECTS_DIR` | - |
+| `SWARMOPS_DASHBOARD_PATH` | Path to SwarmOps dashboard source (for self-modification) | `$SWARMOPS_PROJECTS_DIR/swarmops-dashboard/src` |
+
+**Note:** All paths are now configurable via environment variables. Previously hardcoded paths have been removed in favor of these configurable options.
 
 ## Pipeline Flow
 

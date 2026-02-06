@@ -7,8 +7,9 @@
 
 import { readFile } from 'fs/promises'
 import { join } from 'path'
+import { getOrchestratorDataDir } from '../config/environment'
 
-const ROLES_FILE = '/home/siim/swarmops/data/orchestrator/roles.json'
+const ROLES_FILE = join(getOrchestratorDataDir(), 'roles.json')
 const CACHE_TTL_MS = 30_000 // 30 seconds
 
 export interface RoleConfig {
@@ -89,7 +90,7 @@ export async function getRoleConfig(roleId: string): Promise<RoleConfig> {
       try {
         const promptPath = found.promptFile.startsWith('/')
           ? found.promptFile
-          : join('/home/siim/swarmops/data/orchestrator/prompts', found.promptFile)
+          : join(getOrchestratorDataDir(), 'prompts', found.promptFile)
         const promptContent = await readFile(promptPath, 'utf-8')
         return { ...found, instructions: promptContent }
       } catch {

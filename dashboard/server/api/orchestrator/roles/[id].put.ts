@@ -2,8 +2,9 @@ import { invalidateRoleCache } from '../../../utils/role-loader'
 import { readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { requireAuth } from '../../../utils/security'
+import { getOrchestratorDataDir } from '../../../config/environment'
 
-const DATA_DIR = '/home/siim/swarmops/data/orchestrator'
+const DATA_DIR = getOrchestratorDataDir()
 
 interface Role {
   id: string

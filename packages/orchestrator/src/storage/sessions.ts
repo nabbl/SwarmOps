@@ -17,9 +17,10 @@ import {
   DEFAULT_TOKEN_USAGE,
   ACTIVE_SESSION_STATUSES,
 } from '../types/session';
+import { getSessionsPath } from '../config/environment';
 
 /** Default storage path for active sessions */
-const DEFAULT_SESSIONS_PATH = '/home/siim/swarmops/data/orchestrator/sessions/active.json';
+const DEFAULT_SESSIONS_PATH = getSessionsPath();
 
 /**
  * Session storage with file-based persistence and concurrent update safety

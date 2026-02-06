@@ -87,14 +87,14 @@ Based on this interview, create an implementation plan:
 ${conversation}
 
 **Your Task:**
-1. Create a detailed implementation plan in \`/home/siim/swarmops/projects/${projectName}/specs/IMPLEMENTATION_PLAN.md\`
+1. Create a detailed implementation plan in \`${projectPath}/specs/IMPLEMENTATION_PLAN.md\`
 2. Break work into phases with clear tasks
 3. Update state.json to phase: "build", status: "ready"
 4. Post a summary to the activity feed
 
 **To update state:**
 \`\`\`
-echo '{"project":"${projectName}","phase":"build","iteration":0,"status":"ready","startedAt":"'$(date -Iseconds)'","history":[{"phase":"interview","completedAt":"'$(date -Iseconds)'"},{"phase":"planning","completedAt":"'$(date -Iseconds)'"}]}' > /home/siim/swarmops/projects/${projectName}/state.json
+echo '{"project":"${projectName}","phase":"build","iteration":0,"status":"ready","startedAt":"'$(date -Iseconds)'","history":[{"phase":"interview","completedAt":"'$(date -Iseconds)'"},{"phase":"planning","completedAt":"'$(date -Iseconds)'"}]}' > ${projectPath}/state.json
 \`\`\`
 
 Create the plan now.`

@@ -3,7 +3,8 @@ import { join } from 'path'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event)
-  const projectsDir = config.projectsDir || '/home/siim/swarmops/projects'
+  const { getProjectsDir } = await import('../../config/environment')
+  const projectsDir = config.projectsDir || getProjectsDir()
 
   try {
     const entries = await readdir(projectsDir, { withFileTypes: true })
