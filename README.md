@@ -6,7 +6,7 @@
   <img src="docs/swarm.png" alt="SwarmOps" width="400">
 </p>
 
-SwarmOps manages swarms of AI agents that work together to complete software projects. It handles the full lifecycle from requirements gathering through code review — spawning workers in parallel, managing git isolation, and coordinating multi-stage review chains.
+SwarmOps manages swarms of AI agents that work together to complete software projects. Built on [OpenClaw](https://github.com/openclaw/openclaw) as its execution engine, it handles the full lifecycle from requirements gathering through code review — spawning workers in parallel, managing git isolation, and coordinating multi-stage review chains.
 
 ## How It Works
 
