@@ -20,8 +20,7 @@ import {
 const exec = promisify(execCallback)
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const PHASES_DIR = join(DATA_DIR, 'phases')
+const PHASES_DIR = join(getOrchestratorDataDir(), 'phases')
 
 export interface PhaseWorker {
   workerId: string

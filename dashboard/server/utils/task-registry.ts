@@ -13,8 +13,7 @@ import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const REGISTRY_FILE = join(DATA_DIR, 'task-registry.json')
+const REGISTRY_FILE = join(getOrchestratorDataDir(), 'task-registry.json')
 
 export type TaskStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled'
 
@@ -80,7 +79,7 @@ async function loadRegistry(): Promise<TaskRegistry> {
  */
 async function saveRegistry(registry: TaskRegistry): Promise<void> {
   registry.lastUpdated = new Date().toISOString()
-  await mkdir(DATA_DIR, { recursive: true })
+  await mkdir(getOrchestratorDataDir(), { recursive: true })
   await writeFile(REGISTRY_FILE, JSON.stringify(registry, null, 2))
   registryCache = registry
   cacheLoadedAt = Date.now()

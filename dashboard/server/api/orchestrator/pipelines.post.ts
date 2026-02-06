@@ -4,7 +4,6 @@ import { randomUUID } from 'crypto'
 import { requireAuth } from '../../utils/security'
 import { getOrchestratorDataDir } from '../../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
 
 interface PipelineStep {
   id: string
@@ -43,8 +42,8 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Name is required' })
   }
 
-  await mkdir(DATA_DIR, { recursive: true })
-  const filePath = join(DATA_DIR, 'pipelines.json')
+  await mkdir(getOrchestratorDataDir(), { recursive: true })
+  const filePath = join(getOrchestratorDataDir(), 'pipelines.json')
   let pipelines: Pipeline[] = []
   
   try {

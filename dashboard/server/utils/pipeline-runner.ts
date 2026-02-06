@@ -37,8 +37,7 @@ import { createEscalation } from './escalation-store'
 
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const RUNS_DIR = join(DATA_DIR, 'runs')
+const RUNS_DIR = join(getOrchestratorDataDir(), 'runs')
 
 export interface PipelineStep {
   id: string
@@ -833,7 +832,7 @@ export class PipelineRunner {
 
   private static async loadRoles(): Promise<Role[]> {
     try {
-      const data = await readFile(join(DATA_DIR, 'roles.json'), 'utf-8')
+      const data = await readFile(join(getOrchestratorDataDir(), 'roles.json'), 'utf-8')
       return JSON.parse(data)
     } catch {
       return []
@@ -847,7 +846,7 @@ export class PipelineRunner {
     completedSteps?: number[]
   ): Promise<void> {
     try {
-      const pipelinesPath = join(DATA_DIR, 'pipelines.json')
+      const pipelinesPath = join(getOrchestratorDataDir(), 'pipelines.json')
       const data = await readFile(pipelinesPath, 'utf-8')
       const pipelines: Pipeline[] = JSON.parse(data)
       

@@ -5,7 +5,6 @@ import { randomUUID } from 'crypto'
 import { requireAuth } from '../../utils/security'
 import { getOrchestratorDataDir } from '../../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
 
 interface Role {
   id: string
@@ -26,7 +25,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Name is required' })
   }
 
-  const filePath = join(DATA_DIR, 'roles.json')
+  const filePath = join(getOrchestratorDataDir(), 'roles.json')
   let roles: Role[] = []
   
   try {

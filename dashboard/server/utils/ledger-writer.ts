@@ -6,8 +6,7 @@ import { appendFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const LEDGER_PATH = join(DATA_DIR, 'ledger.jsonl')
+const getLedgerPath = () => join(getOrchestratorDataDir(), 'ledger.jsonl')
 
 export type LedgerEntryType =
   | 'pipeline_started'
@@ -52,8 +51,8 @@ export async function appendLedgerEntry(
   }
 
   try {
-    await mkdir(DATA_DIR, { recursive: true })
-    await appendFile(LEDGER_PATH, JSON.stringify(fullEntry) + '\n')
+    await mkdir(getOrchestratorDataDir(), { recursive: true })
+    await appendFile(getLedgerPath(), JSON.stringify(fullEntry) + '\n')
   } catch (err) {
     console.error('[ledger-writer] Failed to write entry:', err)
   }

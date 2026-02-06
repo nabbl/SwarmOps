@@ -2,7 +2,6 @@ import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { getOrchestratorDataDir } from '../../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
 
 interface Task {
   id: string
@@ -22,7 +21,7 @@ interface Task {
 }
 
 export default defineEventHandler(async (): Promise<Task[]> => {
-  const filePath = join(DATA_DIR, 'work-queue.json')
+  const filePath = join(getOrchestratorDataDir(), 'work-queue.json')
   
   try {
     const content = await readFile(filePath, 'utf-8')

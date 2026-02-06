@@ -10,8 +10,7 @@ import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const RESOLVERS_DIR = join(DATA_DIR, 'conflict-resolvers')
+const RESOLVERS_DIR = join(getOrchestratorDataDir(), 'conflict-resolvers')
 
 export interface ConflictResolverContext {
   sessionKey: string

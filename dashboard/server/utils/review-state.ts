@@ -12,8 +12,7 @@ import { readFile, writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const REVIEWS_DIR = join(DATA_DIR, 'reviews')
+const REVIEWS_DIR = join(getOrchestratorDataDir(), 'reviews')
 
 export type ReviewDecision = 'approve' | 'fix' | 'escalate'
 export type ReviewStatus = 'pending' | 'fixing' | 'escalated' | 'approved' | 'merged'

@@ -20,8 +20,7 @@ import { checkoutBranch, mergeBranch, branchExists, getCurrentBranch } from './c
 const exec = promisify(execCallback)
 import { getOrchestratorDataDir } from '../config/environment'
 
-const DATA_DIR = getOrchestratorDataDir()
-const FIX_CYCLES_PATH = join(DATA_DIR, 'fix-cycles.json')
+const FIX_CYCLES_PATH = join(getOrchestratorDataDir(), 'fix-cycles.json')
 
 export interface FixCycle {
   id: string
